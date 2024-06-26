@@ -1,5 +1,10 @@
 name: learn-github-actions
-on: [workflow_call]
+on:
+  workflow_call:
+      inputs:
+        config-path:
+          required: true
+          type: string
 jobs:
   job1:
     runs-on: self-hosted
@@ -10,7 +15,7 @@ jobs:
         name: echo build
       - run: code test
         name: echo test
-      - run: code review
+      - run: /opt/sonarscannercli/bin/sonar-scanner -Dsonar.host.url=http://34.228.192.233:9000 -Dsonar.login=admin -Dsonar.password=admin123 -Dsonar.projectkey={{inputs.project-name}}
         name: echo code review
       - run: release software
         name: echo release software
