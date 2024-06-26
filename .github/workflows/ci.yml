@@ -16,10 +16,10 @@ jobs:
       - run: find .
         name: list of files
       - run: echo  ok
-        name: echo build
-      - run: echo test
+        name: code build
+      - run: echo ok
         name: code test
       - run: echo /opt/sonar-scanner-6.0.0.4432-linux/bin/sonar-scanner -Dsonar.host.url=http://34.228.192.233:9000  -Dsonar.projectkey={{inputs.project-name}} -Dsonar.qualitygate.wait=true
         name: code review
-      - run: echo release software
+      - run: echo ok
         name: fs release software
