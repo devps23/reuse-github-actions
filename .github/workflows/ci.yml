@@ -1,10 +1,9 @@
 name: learn-github-actions
-on:
-  workflow_call:
-      inputs:
-        project-name:
-          required: true
-          type: string
+on: [workflow_call]
+#      inputs:
+#        project-name:
+#          required: true
+#          type: string
 jobs:
   ci_steps:
     runs-on: [self-hosted]
