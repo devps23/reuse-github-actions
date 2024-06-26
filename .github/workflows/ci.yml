@@ -10,3 +10,11 @@ jobs:
         name: Run echo command
       - run: find .
         name: list of files
+      - run: code build
+        name: echo build
+      - run: code test
+        name: echo test
+      - run: code review
+        name: review
+      - run: release software
+        name: echo release software
