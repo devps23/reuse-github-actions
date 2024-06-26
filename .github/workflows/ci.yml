@@ -10,7 +10,7 @@ jobs:
         name: echo build
       - run: code test
         name: echo test
-      - run: code review
+      - run: echo hello
         name: echo code review
       - run: release software
         name: echo release software
