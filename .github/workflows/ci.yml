@@ -15,11 +15,11 @@ jobs:
         name: echo command
       - run: find .
         name: list of files
-      - run: code build
+      - run: echo  ok
         name: echo build
-      - run: code test
-        name: echo test
+      - run: echo test
+        name: code test
       - run: echo /opt/sonar-scanner-6.0.0.4432-linux/bin/sonar-scanner -Dsonar.host.url=http://34.228.192.233:9000  -Dsonar.projectkey={{inputs.project-name}} -Dsonar.qualitygate.wait=true
-        name: review
-      - run: release software
-        name: echo release software
+        name: code review
+      - run: echo release software
+        name: fs release software
