@@ -2,11 +2,15 @@ name: learn-github-actions
 on: [workflow_call]
 jobs:
   job1:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: code checkout
         uses: actions/checkout@v4
-      - run: echo Hello world
-        name: Run echo command
-      - run: find .
-        name: list of files
+      - run: code build
+        name: echo build
+      - run: code test
+        name: echo test
+      - run: code review
+        name: echo code review
+      - run: release software
+        name: echo release software
