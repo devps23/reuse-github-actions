@@ -2,7 +2,7 @@ name: learn-github-actions
 on:
   workflow_call:
     inputs:
-       project-name:
+      project-name:
         required: true
         type: string
 jobs:
