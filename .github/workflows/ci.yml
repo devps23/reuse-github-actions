@@ -1,5 +1,10 @@
 name: learn-github-actions
-on: [workflow_call]
+on:
+  workflow_call:
+    inputs:
+       project-name:
+        required: true
+        type: string
 jobs:
   job1:
     runs-on: ubuntu-latest
@@ -7,14 +12,14 @@ jobs:
       - name: code checkout
         uses: actions/checkout@v4
       - run: echo Hello world
-        name: Run echo command
+        name: echo command
       - run: find .
         name: list of files
       - run: code build
         name: echo build
       - run: code test
         name: echo test
-      - run: code review
+      - run: echo /opt/sonar-scanner-6.0.0.4432-linux/bin/sonar-scanner -Dsonar.host.url=http://34.228.192.233:9000  -Dsonar.projectkey={{inputs.project-name}} -Dsonar.qualitygate.wait=true
         name: review
       - run: release software
         name: echo release software
