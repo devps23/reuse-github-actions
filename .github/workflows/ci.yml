@@ -15,7 +15,7 @@ jobs:
         name: echo build
       - run: code test
         name: echo test
-      - run: echo /opt/sonarscannercli/bin/sonar-scanner -Dsonar.host.url=http://34.228.192.233:9000 -Dsonar.login=admin -Dsonar.password=admin123 -Dsonar.projectkey={{inputs.project-name}}
+      - run: echo /opt/sonarscannercli/bin/sonar-scanner -Dsonar.host.url=http://34.228.192.233:9000 -Dsonar.login=admin -Dsonar.password=admin123 -Dsonar.projectkey={{inputs.project-name}} -Dsonar.qualitygate.wait=true
         name: echo code review
       - run: release software
         name: echo release software
