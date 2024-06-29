@@ -8,7 +8,7 @@ on:
     secrets:
       vault_token:
         required: true
-        type: string
+
 jobs:
   job1:
     runs-on: [self-hosted]
