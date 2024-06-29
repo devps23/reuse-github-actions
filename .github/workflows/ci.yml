@@ -1,14 +1,25 @@
 name: learn-github-actions
-on: [workflow_call]
+on:
+  workflow_call:
+    inputs:
+      project-name:
+        required: true
+        type: string
+    secrets:
+      vault_token:
+        required: true
 
 jobs:
   reuse:
     runs-on: [self-hosted]
+
     steps:
       - name: code checkout
         uses: actions/checkout@v4
+
       - run: find .
         name: list of files
+
       - run: echo  ok
         name: code build
       - run: echo ok
