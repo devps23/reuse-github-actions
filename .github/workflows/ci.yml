@@ -17,11 +17,11 @@ jobs:
       - name: code checkout
         uses: actions/checkout@v4
       - run: echo Hello world
-        name: echo command
-
-
+        name:  command
       - run: find .
         name: list of files
+      - run: echo secrets.vault_token
+        name: get secrets
       - run: echo  ok
         name: code build
       - run: echo ok
