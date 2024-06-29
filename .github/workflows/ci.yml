@@ -15,6 +15,16 @@ jobs:
     steps:
       - name: code checkout
         uses: actions/checkout@v4
+      - name: Import Secrets
+        id: import-secrets
+        uses: hashicorp/vault-action@v2
+        with:
+          url: https://vault.mycompany.com:8200
+          token: ${{ secrets.VAULT_TOKEN }}
+          tlsSkipVerify: true
+          secrets: |
+            common/data/sonar_credentials/username | username ;
+            common/data/sonar_credentials/password | password ;
       - run: echo Hello world
         name: display mssg
       - run: ls -Alr
@@ -23,4 +33,6 @@ jobs:
         name: project name
       - run: echo ${{secrets.vault_token}}
         name: get token
+      - run: echo /opt/sonarscannercli/bin/sonar-scanner  -Dsonar.login="${{ steps.import-secrets.outputs.username }} -Dsonar.password=${{ steps.import-secrets.outputs.password }} -Dsonar.projectkey={{inputs.project-name}}
+        name: get sonar vault
 
