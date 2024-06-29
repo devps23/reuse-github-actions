@@ -5,21 +5,37 @@ on:
       project-name:
         required: true
         type: string
+    secrets:
+      vault_token:
+        required: true
+        type: string
 jobs:
   job1:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted]
+
     steps:
       - name: code checkout
         uses: actions/checkout@v4
       - run: echo Hello world
         name: echo command
+      - name: Import Vault Secrets
+        id: import-secrets
+        uses: hashicorp/vault-action@v2
+        with:
+          url: https://34.238.172.0:8200
+          token: ${{ secrets.VAULT_TOKEN }}
+          tlsSkipVerify: true
+          secrets: |
+            common/data/sonar_credentials/username | username ;
+            common/data/sonar_credentials/password | passwords ;
+
       - run: find .
         name: list of files
       - run: echo  ok
         name: code build
       - run: echo ok
         name: code test
-      - run: echo /opt/sonar-scanner-6.0.0.4432-linux/bin/sonar-scanner  -Dsonar.projectkey=${{inputs.project-name}} -Dsonar.qualitygate.wait=true
+      - run: echo /opt/sonarscannercli/bin/sonar-scanner  -Dsonar.login="${{ steps.import-secrets.outputs.username }}" -Dsonar.password="${{ steps.import-secrets.outputs.password }}" -Dsonar.projectkey={{inputs.project-name}}" -Dsonar.qualitygate.wait=true
         name: code review
       - run: echo ok
         name: fs release software
