@@ -23,8 +23,8 @@ jobs:
           token: ${{ secrets.vault_token }}
           tlsSkipVerify: true
           secrets: |
-            common/data/sonar_credentials/username | username ;
-            common/data/sonar_credentials/password | password ;
+            common/data/sonar/username | username ;
+            common/data/sonar/password | password ;
       - run: echo Hello world
         name: display mssg
       - run: ls -Alr
