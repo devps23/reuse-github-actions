@@ -19,6 +19,6 @@ jobs:
         name: display mssg
       - run: ls -Alr
         name: list of files
-      - run: echo "project-name" ${{inputs.project-name}}
+      - run: echo  ${{inputs.project-name}}
         name: project name
 
