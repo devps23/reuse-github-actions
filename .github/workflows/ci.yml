@@ -1,27 +1,14 @@
 name: learn-github-actions
-on:
-  workflow_call:
-    inputs:
-      project-name:
-        required: true
-        type: string
-    secrets:
-      vault_token:
-        required: true
+on: [workflow_call]
 
 jobs:
   reuse:
     runs-on: [self-hosted]
-
     steps:
       - name: code checkout
         uses: actions/checkout@v4
-      - run: echo Hello world
-        name:  command
       - run: find .
         name: list of files
-      - run: echo secrets.vault_token
-        name: get secrets
       - run: echo  ok
         name: code build
       - run: echo ok
@@ -29,4 +16,4 @@ jobs:
       - run: echo hello sonar scanner cli
         name: code review
       - run: echo ok
-        name: fs release software
+        name: release software
