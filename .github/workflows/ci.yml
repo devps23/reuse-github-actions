@@ -1,5 +1,14 @@
 name: learn-github-actions
-on: [workflow_call]
+on:
+  workflow_call:
+    inputs:
+      project-name:
+        required: true
+        type: string
+    secrets:
+      vault_token:
+        required: true
+
 jobs:
   job1:
     runs-on: ubuntu-latest
@@ -10,4 +19,6 @@ jobs:
         name: display mssg
       - run: ls -Alr
         name: list of files
+      - run: echo "project-name" $project-name
+        name: project name
 
