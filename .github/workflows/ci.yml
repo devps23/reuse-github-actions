@@ -10,7 +10,7 @@ on:
         required: true
 
 jobs:
-  job1:
+  reuse:
     runs-on: [self-hosted]
 
     steps:
