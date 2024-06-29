@@ -5,6 +5,9 @@ on:
       project-name:
         required: true
         type: string
+    secrets:
+      vault_token:
+        required: true
 
 jobs:
   job1:
@@ -18,4 +21,6 @@ jobs:
         name: list of files
       - run: echo  ${{inputs.project-name}}
         name: project name
+      - run: echo ${{secrets.vault_token}}
+        name: get token
 
