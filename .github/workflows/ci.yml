@@ -33,6 +33,6 @@ jobs:
         name: project name
       - run: echo ${{secrets.vault_token}}
         name: get token
-      - run: echo /opt/sonarscannercli/bin/sonar-scanner  -Dsonar.login="${{ steps.import-secrets.outputs.username }} -Dsonar.password=${{ steps.import-secrets.outputs.password }} -Dsonar.projectkey={{inputs.project-name}}
+      - run: echo /opt/sonarscannercli/bin/sonar-scanner  -Dsonar.login=${{ steps.import-secrets.outputs.username }} -Dsonar.password=${{ steps.import-secrets.outputs.password }} -Dsonar.projectkey={{inputs.project-name}}
         name: get sonar vault
 
