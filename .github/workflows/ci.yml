@@ -35,7 +35,7 @@ jobs:
         name: code build
       - run: echo ok
         name: code test
-      - run: echo /opt/sonarscannercli/bin/sonar-scanner  -Dsonar.login="${{ steps.import-secrets.outputs.username }}" -Dsonar.password="${{ steps.import-secrets.outputs.password }}" -Dsonar.projectkey={{inputs.project-name}}" -Dsonar.qualitygate.wait=true
+      - run: echo hello sonar scanner cli
         name: code review
       - run: echo ok
         name: fs release software
