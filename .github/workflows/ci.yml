@@ -18,16 +18,7 @@ jobs:
         uses: actions/checkout@v4
       - run: echo Hello world
         name: echo command
-      - name: Import Vault Secrets
-        id: import-secrets
-        uses: hashicorp/vault-action@v2
-        with:
-          url: https://34.238.172.0:8200
-          token: ${{ secrets.VAULT_TOKEN }}
-          tlsSkipVerify: true
-          secrets: |
-            common/data/sonar_credentials/username | username ;
-            common/data/sonar_credentials/password | passwords ;
+
 
       - run: find .
         name: list of files
