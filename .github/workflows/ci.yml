@@ -20,7 +20,7 @@ jobs:
         uses: hashicorp/vault-action@v2
         with:
           url: https://3.81.127.67:8200
-          token: ${{ secrets.VAULT_TOKEN }}
+          token: ${{ secrets.vault_token }}
           tlsSkipVerify: true
           secrets: |
             common/data/sonar_credentials/username | username ;
