@@ -19,7 +19,7 @@ jobs:
         id: import-secrets
         uses: hashicorp/vault-action@v2
         with:
-          url: https://3.81.127.67:8200
+          url: https://3.92.161.251:8200
           token: ${{ secrets.vault_token }}
           tlsSkipVerify: true
           secrets: |
@@ -36,6 +36,6 @@ jobs:
       - run: echo /opt/sonarscannercli/bin/sonar-scanner  -Dsonar.login=${{ steps.import-secrets.outputs.username }} -Dsonar.password=${{ steps.import-secrets.outputs.password }} -Dsonar.projectkey={{inputs.project-name}}
         name: get sonar vault
       - run: echo ${{ startsWith(github.ref) }}
-        if: ${{ startsWith(github.ref, 'refs/tags/') }}
+#        if: ${{ startsWith(github.ref, 'refs/tags/') }}
         name: code review
 
