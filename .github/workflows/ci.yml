@@ -15,16 +15,16 @@ jobs:
     steps:
       - name: code checkout
         uses: actions/checkout@v4
-      - name: Import Secrets
-        id: import-secrets
-        uses: hashicorp/vault-action@v2
-        with:
-          url: https://3.86.70.187:8200
-          token: ${{ secrets.vault_token }}
-          tlsSkipVerify: true
-          secrets: |
-            common/data/sonar username | username ;
-            common/data/sonar password | password ;
+#      - name: Import Secrets
+#        id: import-secrets
+#        uses: hashicorp/vault-action@v2
+#        with:
+#          url: https://3.86.70.187:8200
+#          token: ${{ secrets.vault_token }}
+#          tlsSkipVerify: true
+#          secrets: |
+#            common/data/sonar username | username ;
+#            common/data/sonar password | password ;
       - run: echo Hello world
         name: display mssg
       - run: ls -Alr
@@ -37,5 +37,5 @@ jobs:
         name: get sonar vault
       - run: echo ${{github.ref}}
         name: code review
-        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
 
