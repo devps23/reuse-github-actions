@@ -1,0 +1,25 @@
+name: release-reuse-github-actions
+on:
+  workflow_call:
+    tags:
+       - '*'
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v4
+
+      - run: echo Hello world
+        name: display mssg
+      - run: ls -Alr
+        name: list of files
+      - run: echo  ${{inputs.project-name}}
+        name: project name
+      - run: echo ${{secrets.vault_token}}
+        name: get token
+      - run: echo review ok
+        name: code review
+
+
