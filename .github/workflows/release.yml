@@ -15,10 +15,7 @@ jobs:
         name: display mssg
       - run: ls -Alr
         name: list of files
-      - run: echo  ${{inputs.project-name}}
-        name: project name
-      - run: echo ${{secrets.vault_token}}
-        name: get token
+
       - run: echo review ok
         name: code review
 
