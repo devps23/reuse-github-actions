@@ -1,8 +1,13 @@
 name: release-reuse-github-actions
 on:
   workflow_call:
-     tags:
-       - '*'
+    inputs:
+      project-name:
+        required: true
+        type: string
+    secrets:
+      vault_token:
+        required: true
 
 jobs:
   job1:
