@@ -35,7 +35,7 @@ jobs:
         name: get token
       - run: echo /opt/sonarscannercli/bin/sonar-scanner  -Dsonar.login=${{ steps.import-secrets.outputs.username }} -Dsonar.password=${{ steps.import-secrets.outputs.password }} -Dsonar.projectkey={{inputs.project-name}}
         name: get sonar vault
-      - run: echo review ok
+      - run: echo ${{github.ref}}
         name: code review
-        if: ${{ startsWith(github.ref, 'refs/tags/') }}
+#        if: ${{ startsWith(github.ref, 'refs/tags/') }}
 
