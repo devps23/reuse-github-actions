@@ -31,6 +31,8 @@ jobs:
         name: list of files
       - run: echo  ${{inputs.project-name}}
         name: project name
+      - run: env
+        name: display env
       - run: echo ${{secrets.vault_token}}
         name: get token
       - run: echo ${{steps.import-secrets.outputs.artifactory_user}} \n ${{steps.import-secrets.outputs.artifactory_password}}
