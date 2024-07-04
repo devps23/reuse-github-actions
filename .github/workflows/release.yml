@@ -15,16 +15,27 @@ jobs:
     steps:
       - name: code checkout
         uses: actions/checkout@v4
-
+      - name: Import Secrets
+        id: import-secrets
+        uses: hashicorp/vault-action@v2
+        with:
+          url: https://3.90.242.79:8200
+          token: ${{ secrets.vault_token }}
+          tlsSkipVerify: true
+          secrets: |
+            common/data/artifactory artifactory_user | artifactory_user ;
+            common/data/artifactory artifactory_password | artifactory_password ;
       - run: echo Hello world
-        name: display mssg
+        name: display msg
       - run: ls -Alr
         name: list of files
       - run: echo  ${{inputs.project-name}}
         name: project name
       - run: echo ${{secrets.vault_token}}
         name: get token
-      - run: echo review ok
-        name: code review
+      - run: echo ${{steps.import-secrets.outputs.artifactory_user}} \n ${{steps.import-secrets.outputs.artifactory_password}}
+        name: display artifactory credentials
+#      - run: echo curl -v --user ${{steps.import-secrets.outputs.username}}:${{steps.import-secrets.outputs.password}} --data-binary @local-file -X PUT "http://<artifactory server >/artifactory/abc-snapshot-local/remotepath/remotefile"
+#        name: code review
 
 
