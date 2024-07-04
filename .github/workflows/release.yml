@@ -5,6 +5,10 @@ on:
       project-name:
         required: true
         type: string
+      release_archive_file:
+      required: true
+      type: string
+
     secrets:
       vault_token:
         required: true
@@ -25,9 +29,14 @@ jobs:
           secrets: |
             common/data/artifactory artifactory_user | artifactory_user ;
             common/data/artifactory artifactory_password | artifactory_password ;
+        - uses: vimtor/action-zip@v1.2
+          with:
+            files: ${{inputs.release_archive_file}}
+            dest: result.zip
+      - run: echo ${{GITHUB_REF_NAME}}
       - run: echo Hello world
         name: display msg
-      - run: ls -Alr
+      - run: ls -lh
         name: list of files
       - run: echo  ${{inputs.project-name}}
         name: project name
