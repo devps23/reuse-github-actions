@@ -1,0 +1,25 @@
+name: release-reuse-github-actions
+on:
+  workflow_call:
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v4
+      - run: ls -lh
+        name: upload artifact file through jfrog cli
+      - name: jfrog through cli
+        uses: jfrog/setup-jfrog-cli@v4
+        env:
+           JF_URL: ${{ secrets.JF_URL }}
+           JF_USER: ${{ secrets.JF_USER }}
+           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+              
+      - run: |
+          jf rt ping
+          jf rt u expense-bckend.zip expense-backend/expense-backend.zip
+
+
+
