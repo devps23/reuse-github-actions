@@ -29,11 +29,11 @@ jobs:
           secrets: |
             common/data/artifactory artifactory_user | artifactory_user ;
             common/data/artifactory artifactory_password | artifactory_password ;
-      - name: zi file
-        uses: vimtor/action-zip@v1.2
-        with:
-          files: ${{inputs.release_archive_file}}
-          dest: result.zip
+#      - name: zi file
+#        uses: vimtor/action-zip@v1.2
+#        with:
+#          files: ${{inputs.release_archive_file}}
+#          dest: result.zip
       - run: echo ${{GITHUB_REF_NAME}}
       - run: echo Hello world
         name: display msg
