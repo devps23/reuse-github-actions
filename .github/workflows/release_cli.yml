@@ -5,9 +5,10 @@ on:
       project-name:
         required: true
         type: string
-      JF_USER:
+      env:
         required: true
         type: string
+
 
 
 jobs:
@@ -17,13 +18,29 @@ jobs:
       - name: code checkout
         uses: actions/checkout@v4
       - run: ls -lh
-        name: list of files
-      - run: echo ${{inputs.project-name}}
-        name: get project name
-      - run: echo ${{secrets.JF_USER}}
-        name: get username
+        name: upload artifact file through jfrog cli
+      - name: jfrog through cli
+        uses: jfrog/setup-jfrog-cli@v4
+#      - name: Import Secret
+#        id: import-secrets
+#        uses: hashicorp/vault-action@v2
+#        with:
+#          url: https://3.86.70.187:8200
+#          token: ${{ secrets.vault_token }}
+#          tlsSkipVerify: true
+#          secrets: |
+#                  common/data/artifactory artifactory_user | artifactory_user ;
+#                  common/data/artifactory artifactory_password | artifactory_password ;
+#        env:
+#           JF_URL: ${{ secrets.JF_URL }}
+#           JF_USER: ${{ secrets.JF_USER }}
+#           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
 
-
+#      - run: |
+#          jf rt ping
+#          jf rt u ${{inputs.project-name}}.zip ${{inputs.project-name}}/${{inputs.project-name}}.zip
+      - name: display secrets
+        run: echo ${{ env.JF_URL }}
 
 
 
