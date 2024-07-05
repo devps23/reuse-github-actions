@@ -7,9 +7,12 @@ on:
         type: string
     secrets:
       JF_URL:
+        required: true
       JF_USER:
+        required: true
       JF_PASSWORD:
-      required: true
+        required: true
+
 
 jobs:
   job1:
