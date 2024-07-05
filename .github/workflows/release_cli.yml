@@ -53,6 +53,7 @@ jobs:
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
       - run: |
           jf rt ping
+      name: connected OK
 #          jf rt u ${{inputs.project-name}}.zip ${{inputs.project-name}}/${{inputs.project-name}}.zip
 
 
