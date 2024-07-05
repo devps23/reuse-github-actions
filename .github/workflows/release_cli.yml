@@ -5,6 +5,10 @@ on:
       project-name:
         required: true
         type: string
+    secrets:
+      JF_USER:
+        required: true
+
 
 jobs:
   job1:
@@ -16,6 +20,8 @@ jobs:
         name: list of files
       - run: echo ${{inputs.project-name}}
         name: get project name
+      - run: echo ${{secrets.JF_USER}}
+        name: get username
 
 
 
