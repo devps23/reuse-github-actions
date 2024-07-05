@@ -1,6 +1,10 @@
 name: release-reuse-github-actions
 on:
   workflow_call:
+    inputs:
+      project-name:
+        required: true
+        type: string
 
 jobs:
   job1:
@@ -19,7 +23,7 @@ jobs:
               
       - run: |
           jf rt ping
-          jf rt u expense-bckend.zip expense-backend/expense-backend.zip
+          jf rt u ${{inputs.project-name}}.zip ${{inputs.project-name}}/${{inputs.project-name}}.zip
 
 
 
