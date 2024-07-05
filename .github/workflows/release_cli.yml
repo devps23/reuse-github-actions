@@ -10,7 +10,6 @@ on:
 #        required: true
 #      JF_USER:
 
-
 jobs:
   job1:
     runs-on: ubuntu-latest
