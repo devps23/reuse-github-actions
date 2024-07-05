@@ -47,7 +47,7 @@ jobs:
       - run: echo ${{inputs.project-name}}.zip
         name: zip files
       - uses: jfrog/setup-jfrog-cli@v4
-       env:
+        env:
           JF_URL: ${{ secrets.JF_URL }}
           JF_USER: ${{ secrets.JF_USER }}
           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
