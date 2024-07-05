@@ -5,10 +5,13 @@ on:
       project-name:
         required: true
         type: string
-#    secrets:
-#      JF_URL:
-#        required: true
-#      JF_USER:
+    secrets:
+      JF_URL:
+        required: true
+      JF_USER:
+        required: true
+      JF_PASSWORD:
+        required: true
 
 jobs:
   job1:
