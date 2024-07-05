@@ -8,10 +8,7 @@ on:
     secrets:
       JF_URL:
         required: true
-      JF_USER:
-        required: true
-      JF_PASSWORD:
-        required: true
+
 
 
 jobs:
@@ -26,12 +23,14 @@ jobs:
         uses: jfrog/setup-jfrog-cli@v4
         env:
            JF_URL: ${{ secrets.JF_URL }}
-           JF_USER: ${{ secrets.JF_USER }}
-           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+#           JF_USER: ${{ secrets.JF_USER }}
+#           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
               
-      - run: |
-          jf rt ping
-          jf rt u ${{inputs.project-name}}.zip ${{inputs.project-name}}/${{inputs.project-name}}.zip
+#      - run: |
+#          jf rt ping
+#          jf rt u ${{inputs.project-name}}.zip ${{inputs.project-name}}/${{inputs.project-name}}.zip
+      - name: display secrets
+        run: echo ${{ secrets.JF_URL }}
 
 
 
