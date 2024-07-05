@@ -5,11 +5,9 @@ on:
       project-name:
         required: true
         type: string
-      env:
-        required: true
-        type: string
-
-
+    secrets:
+       JF_URL:
+         required: true
 
 jobs:
   job1:
@@ -21,6 +19,8 @@ jobs:
         name: upload artifact file through jfrog cli
       - name: jfrog through cli
         uses: jfrog/setup-jfrog-cli@v4
+      - run: echo ${{secrets.JF_URL}}
+        name: get jfrog url
 #      - name: Import Secret
 #        id: import-secrets
 #        uses: hashicorp/vault-action@v2
@@ -35,12 +35,11 @@ jobs:
 #           JF_URL: ${{ secrets.JF_URL }}
 #           JF_USER: ${{ secrets.JF_USER }}
 #           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
-
+#
 #      - run: |
 #          jf rt ping
 #          jf rt u ${{inputs.project-name}}.zip ${{inputs.project-name}}/${{inputs.project-name}}.zip
-      - name: display secrets
-        run: echo ${{ env.JF_URL }}
+     
 
 
 
