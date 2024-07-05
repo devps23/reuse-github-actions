@@ -21,12 +21,12 @@ jobs:
         uses: jfrog/setup-jfrog-cli@v4
       - run: ls -lh
         name: upload artifact file through jfrog cli
-      - name: jfrog through cli
-        uses: jfrog/setup-jfrog-cli@v4
-      env:
-         JF_URL: ${{ secrets.JF_URL }}
-         JF_USER: ${{ secrets.JF_USER }}
-         JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+
+      - uses: jfrog/setup-jfrog-cli@v4
+        env:
+          JF_URL: ${{ secrets.JF_URL }}
+          JF_USER: ${{ secrets.JF_USER }}
+          JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
 
 
 
