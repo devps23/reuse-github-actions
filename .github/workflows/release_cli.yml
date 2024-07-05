@@ -42,7 +42,7 @@ jobs:
                   common/data/artifactory artifactory_password | artifactory_password ;
       - uses: vimtor/action-zip@v1.2
         with:
-          files: ${{release_archive_file}}
+          files: ${{inputs.release_archive_file}}
           dest: ${{inputs.project-name}}.zip
       - run: echo ${{inputs.project-name}}.zip
         name: zip files
