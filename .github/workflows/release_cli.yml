@@ -5,6 +5,9 @@ on:
       project-name:
         required: true
         type: string
+      release_archive_file:
+        required: true
+        type: string
     secrets:
       JF_URL:
         required: true
@@ -27,11 +30,30 @@ jobs:
         name: upload artifact file through jfrog cli
       - run: echo "${{ secrets.JF_URL }} ${{ secrets.JF_USER }} ${{ secrets.JF_PASSWORD }}"
         name: get jfrog credentials
-      - uses: jfrog/setup-jfrog-cli@v4
-        env:
-          JF_URL: ${{ secrets.JF_URL }}
-          JF_USER: ${{ secrets.JF_USER }}
-          JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+      - name: Import Secret
+        id: import-secrets
+        uses: hashicorp/vault-action@v2
+        with:
+          url: https://54.160.185.91:8200
+          token: ${{ secrets.vault_token }}
+          tlsSkipVerify: true
+          secrets: |
+                  common/data/artifactory artifactory_user | artifactory_user ;
+                  common/data/artifactory artifactory_password | artifactory_password ;
+      - uses: vimtor/action-zip@v1.2
+        with:
+          files: ${{release_archive_file}}
+          dest: ${{inputs.project-name}}.zip
+      - run: echo ${{inputs.project-name}}.zip
+        name: zip files
+#      - uses: jfrog/setup-jfrog-cli@v4
+#       env:
+#          JF_URL: ${{ secrets.JF_URL }}
+#          JF_USER: ${{ secrets.JF_USER }}
+#          JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+#      - run: |
+#          jf rt ping
+#          jf rt u ${{inputs.project-name}}.zip ${{inputs.project-name}}/${{inputs.project-name}}.zip
 
 
 
