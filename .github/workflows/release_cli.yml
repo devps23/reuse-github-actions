@@ -5,6 +5,9 @@ on:
       project-name:
         required: true
         type: string
+    secrets:
+      JF_URL:
+        required: true
 
 jobs:
   job1:
@@ -16,6 +19,8 @@ jobs:
         name: upload artifact file through jfrog cli
       - name: jfrog through cli
         uses: jfrog/setup-jfrog-cli@v4
+      - run: echo ${{secrets.JF_URL}}
+        name: get url
 
 
      
