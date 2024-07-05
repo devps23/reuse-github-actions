@@ -21,8 +21,9 @@ jobs:
         name: upload artifact file through jfrog cli
       - name: jfrog through cli
         uses: jfrog/setup-jfrog-cli@v4
-        env:
-           JF_URL: ${{ secrets.JF_URL }}
+
+#        env:
+#           JF_URL: ${{ secrets.JF_URL }}
 #           JF_USER: ${{ secrets.JF_USER }}
 #           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
               
@@ -31,6 +32,8 @@ jobs:
 #          jf rt u ${{inputs.project-name}}.zip ${{inputs.project-name}}/${{inputs.project-name}}.zip
       - name: display secrets
         run: echo ${{ secrets.JF_URL }}
+      - run: env
+        name: print env
 
 
 
