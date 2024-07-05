@@ -5,11 +5,6 @@ on:
       project-name:
         required: true
         type: string
-    secrets:
-      JF_URL:
-        required: true
-
-
 
 jobs:
   job1:
@@ -18,22 +13,11 @@ jobs:
       - name: code checkout
         uses: actions/checkout@v4
       - run: ls -lh
-        name: upload artifact file through jfrog cli
-      - name: jfrog through cli
-        uses: jfrog/setup-jfrog-cli@v4
+        name: list of files
+      - run: echo ${{inputs.project-name}}
+        name: get project name
 
-#        env:
-#           JF_URL: ${{ secrets.JF_URL }}
-#           JF_USER: ${{ secrets.JF_USER }}
-#           JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
-              
-#      - run: |
-#          jf rt ping
-#          jf rt u ${{inputs.project-name}}.zip ${{inputs.project-name}}/${{inputs.project-name}}.zip
-      - name: display secrets
-        run: echo ${{ secrets.JF_URL }}
-      - run: env
-        name: print env
+
 
 
 
