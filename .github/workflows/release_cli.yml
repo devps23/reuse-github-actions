@@ -5,9 +5,9 @@ on:
       project-name:
         required: true
         type: string
-    secrets:
       JF_USER:
         required: true
+        type: string
 
 
 jobs:
