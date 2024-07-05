@@ -46,14 +46,14 @@ jobs:
           dest: ${{inputs.project-name}}.zip
       - run: echo ${{inputs.project-name}}.zip
         name: zip files
-#      - uses: jfrog/setup-jfrog-cli@v4
-#       env:
-#          JF_URL: ${{ secrets.JF_URL }}
-#          JF_USER: ${{ secrets.JF_USER }}
-#          JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
-#      - run: |
-#          jf rt ping
-#          jf rt u ${{inputs.project-name}}.zip ${{inputs.project-name}}/${{inputs.project-name}}.zip
+      - uses: jfrog/setup-jfrog-cli@v4
+       env:
+          JF_URL: ${{ secrets.JF_URL }}
+          JF_USER: ${{ secrets.JF_USER }}
+          JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+      - run: |
+          jf rt ping
+          jf rt u ${{inputs.project-name}}.zip ${{inputs.project-name}}/${{inputs.project-name}}.zip
 
 
 
