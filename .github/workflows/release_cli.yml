@@ -5,8 +5,11 @@ on:
       project-name:
         required: true
         type: string
-    secrets:
-      required: true
+#    secrets:
+#      JF_URL:
+#        required: true
+#      JF_USER:
+
 
 jobs:
   job1:
@@ -20,7 +23,8 @@ jobs:
         uses: jfrog/setup-jfrog-cli@v4
       - run: ls -lh
         name: upload artifact file through jfrog cli
-
+      - run: echo "${{ secrets.JF_URL }} ${{ secrets.JF_USER }} ${{ secrets.JF_PASSWORD }}"
+        name: get jfrog credentials
       - uses: jfrog/setup-jfrog-cli@v4
         env:
           JF_URL: ${{ secrets.JF_URL }}
