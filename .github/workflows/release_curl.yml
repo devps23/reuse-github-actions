@@ -32,7 +32,7 @@ jobs:
         id: import-secrets
         uses: hashicorp/vault-action@v2
         with:
-          url: https://54.82.185.197:8200
+          url: https://52.90.98.233:8200
           token: ${{ secrets.VAULT_TOKEN }}
           tlsSkipVerify: true
           secrets: |
@@ -46,7 +46,7 @@ jobs:
       - name: artifactory user
         run: echo ${{steps.import-secrets.outputs.artifactory_user}}
       - name: artifactory password
-        run: echo ${{steps.import-secrets.outputs.artifactory_password}}
+        run: echo ${{steps.import-secrets.outputs.artifactory_password}}s
 
-#      - name: upload artifact to jfrog
-#        run: $ curl -v --user ${{steps.import-secrets.outputs.artifactory_user}}:${{steps.import-secrets.outputs.artifactory_password}} --data-binary @artifact.zip -X PUT "http://<artifactory server >/artifactory/abc-snapshot-local/artifact.zip
+      - name: upload artifact to jfrog
+        run: $ curl -v --user ${{steps.import-secrets.outputs.artifactory_user}}:${{steps.import-secrets.outputs.artifactory_password}} --data-binary @artifact.zip -X PUT "http://18.232.76.52:8081 >/artifactory/expense-backend/artifact.zip
