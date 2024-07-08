@@ -28,16 +28,16 @@ jobs:
         name: get vault token
       - run: echo ${{inputs.release_archive_file}}
         name: artifact  file
-#      - name: Import Secrets
-#        id: import-secrets
-#        uses: hashicorp/vault-action@v2
-#        with:
-#          url: https://54.82.185.197:8200
-#          token: ${{ secrets.VAULT_TOKEN }}
-#          tlsSkipVerify: true
-#          secrets: |
-#            common/data/artifactory/ artifactory_user | artifactory_user;
-#            common/data/artifactory/ artifactory_password | artifactory_password ;
+      - name: Import Secrets
+        id: import-secrets
+        uses: hashicorp/vault-action@v2
+        with:
+          url: https://54.82.185.197:8200
+          token: ${{ secrets.VAULT_TOKEN }}
+          tlsSkipVerify: true
+          secrets: |
+            common/data/artifactory/ artifactory_user | artifactory_user;
+            common/data/artifactory/ artifactory_password | artifactory_password ;
 #      - name: zip files
 #        uses: vimtor/action-zip@v1.2
 #        with:
