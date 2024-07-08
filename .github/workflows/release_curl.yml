@@ -1,0 +1,42 @@
+name: reusable curl github actions
+on:
+  workflow_call:
+    inputs:
+      project-name:
+        required: true
+        type: string
+      release_artifact_file:
+        required: true
+        type: string
+    secrets:
+      VAULT_TOKEN:
+        required: true
+
+jobs:
+  job_curl:
+    runs-on: [ ubuntu-latest ]
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v4
+      - name: get list of files
+        run: ls -l
+      - run: env
+        name: display env
+      - name: Import Secrets
+        id: import-secrets
+        uses: hashicorp/vault-action@v2
+        with:
+          url: https://54.82.185.197:8200
+          token: ${{ secrets.VAULT_TOKEN }}
+          tlsSkipVerify: true
+          secrets: |
+            common/data/artifactory/artifactory_user | artifactory_user;
+            common/data/artifactory/artifactory_password | artifactory_password ;
+      - name: zip files
+        uses: vimtor/action-zip@v1.2
+        with:
+          files: ${{inputs.release_artifact_file}}
+          dest: artifact.zip ${{inputs.release_artifact_file}}
+
+#      - name: upload artifact to jfrog
+#        run: $ curl -v --user ${{steps.import-secrets.outputs.artifactory_user}}:${{steps.import-secrets.outputs.artifactory_password}} --data-binary @artifact.zip -X PUT "http://<artifactory server >/artifactory/abc-snapshot-local/artifact.zip
