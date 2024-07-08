@@ -22,6 +22,12 @@ jobs:
         run: ls -l
       - run: env
         name: display env
+      - run: echo ${{inputs.project-name}}
+        name: get project name
+      - run: echo ${{secrets.VAULT_TOKEN}}
+        name: get vault token
+      - run: echo ${{inputs.release_artifact_file}}
+        name: artifact  file
       - name: Import Secrets
         id: import-secrets
         uses: hashicorp/vault-action@v2
