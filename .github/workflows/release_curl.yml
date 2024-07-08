@@ -49,4 +49,4 @@ jobs:
         run: echo ${{steps.import-secrets.outputs.artifactory_password}}s
 
       - name: upload artifact to jfrog
-        run: $ curl -v --user ${{steps.import-secrets.outputs.artifactory_user}}:${{steps.import-secrets.outputs.artifactory_password}} --data-binary @artifact.zip -X PUT "http://18.232.76.52:8081 >/artifactory/expense-backend/artifact.zip
+        run: $ curl -v --user ${{steps.import-secrets.outputs.artifactory_user}}:${{steps.import-secrets.outputs.artifactory_password}} --data-binary @artifact.zip -X PUT http://18.232.76.52:8081/artifactory/expense-backend/artifact.zip
