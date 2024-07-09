@@ -22,6 +22,8 @@ jobs:
         run: ls -l
       - run: env
         name: display env
+      - run: echo ${GITHUB_REF_NAME}>VERSION
+        name: get github ref version
       - run: echo ${{inputs.project-name}}
         name: get project name
       - run: echo ${{secrets.VAULT_TOKEN}}
@@ -32,7 +34,7 @@ jobs:
         id: import-secrets
         uses: hashicorp/vault-action@v2
         with:
-          url: https://52.90.98.233:8200
+          url: https://204.236.252.187:8200
           token: ${{ secrets.VAULT_TOKEN }}
           tlsSkipVerify: true
           secrets: |
@@ -48,5 +50,5 @@ jobs:
       - name: artifactory password
         run: echo ${{steps.import-secrets.outputs.artifactory_password}}s
 
-      - name: upload artifact to jfrog
-        run: curl -v --user ${{steps.import-secrets.outputs.artifactory_user}}:${{steps.import-secrets.outputs.artifactory_password}} --data-binary @artifact.zip -X PUT http://18.232.76.52:8081/artifactory/expense-backend/artifact.zip
+#      - name: upload artifact to jfrog
+#        run: curl -v --user ${{steps.import-secrets.outputs.artifactory_user}}:${{steps.import-secrets.outputs.artifactory_password}} --data-binary @artifact.zip -X PUT http://18.232.76.52:8081/artifactory/expense-backend/artifact.zip
